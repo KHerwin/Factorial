@@ -3,19 +3,6 @@ import { expect, $ } from '@wdio/globals'
 
 import FactorialPage from '../pageobjects/factorial.page.js';
 
-/*Given(/^I am on the (\w+) page$/, async (page) => {
-    await pages[page].open()
-});
-
-When(/^I login with (\w+) and (.+)$/, async (username, password) => {
-    await LoginPage.login(username, password)
-});
-
-Then(/^I should see a flash message saying (.*)$/, async (message) => {
-    await expect(SecurePage.flashAlert).toBeExisting();
-    await expect(SecurePage.flashAlert).toHaveTextContaining(message);
-});*/
-
 Given(/^I am on the The greatest factorial calculator landing page$/, async() => {
     await FactorialPage.open();
 });
@@ -36,3 +23,6 @@ Then(/^I see the following text "([^"]*)"$/, async(text) => {
     await expect(FactorialPage.resultText).toHaveTextContaining(text);
 });
 
+Then(/^I see the following text relate to factorial of 0 "([^"]*)"$/, async(text) => {
+    await expect(FactorialPage.resultText).toHaveTextContaining(text);
+});
