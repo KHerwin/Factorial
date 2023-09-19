@@ -10,3 +10,5 @@ npm init wdio .
 
 Run the test
 npx wdio 
+
+Watch the execution of the test: https://watch.screencastify.com/v/dYZB2mFjNGdjNOMQZH7c
