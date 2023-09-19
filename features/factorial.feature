@@ -25,4 +25,4 @@
     #And I enter the number "-6" on the input
     #When I click on the button calculate
     #Then I see the result display on page
-    #And I see the following text relate to factorial of 0 "Error. Please enter an integer"
+    #And I see the following text relate to factorial of -6 "Error. Please enter an integer"
