@@ -26,3 +26,7 @@ Then(/^I see the following text "([^"]*)"$/, async(text) => {
 Then(/^I see the following text relate to factorial of 0 "([^"]*)"$/, async(text) => {
     await expect(FactorialPage.resultText).toHaveTextContaining(text);
 });
+
+Then(/^No results are appearing on the screen and i don't see the text "([^"]*)"$/, async(text) => {
+    await expect(FactorialPage.resultText).not.toHaveTextContaining(text);
+});
