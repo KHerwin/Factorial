@@ -39,4 +39,9 @@
     Then the response should have a status code of 200 OK
     And the response should contain the text "This is the terms and conditions document. We are not yet ready with it. Stay tuned!"
 
+Scenario: Calculate a factorial of 4 using GET
+    Given I have the API endpoint "https://pandaqaetest.pythonanywhere.com/"
+    When I make a GET request to the endpoint with the query parameter "number" set to "4"
+    Then the response should have a status code of 200 OK
+    And the response should contain the text "answer:24"
     

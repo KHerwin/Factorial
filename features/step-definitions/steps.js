@@ -49,10 +49,19 @@ When(/^I make a GET request to the endpoint$/, async function () {
     }
 });
 
+When(/^I make a GET request to the endpoint with the query parameter "number" set to "([^"]*)"$/, async function (param) {
+    try {
+        response = await axios.get(apiUrl, { params: { param } });
+    } catch (error) {
+        throw new Error(`Failed to make GET request to ${apiUrl}: ${error.message}`);
+    }
+});
+
 Then(/^the response should have a status code of 200 OK$/, function () {
     expect(response.statusText).toEqual("OK")
 });
 
 Then(/^the response should contain the text "([^"]*)"$/, function (text) {
-    expect(response.data).toHaveTextContaining(text);
+    const responseBody = response.data;
+    expect(responseBody).toEqual(text);
 });
