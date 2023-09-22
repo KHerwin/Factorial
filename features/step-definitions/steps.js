@@ -1,5 +1,9 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { expect, $ } from '@wdio/globals'
+import { expect, $ } from '@wdio/globals';
+import axios from 'axios';
+
+let apiUrl;
+let response;
 
 import FactorialPage from '../pageobjects/factorial.page.js';
 
@@ -23,10 +27,32 @@ Then(/^I see the following text "([^"]*)"$/, async(text) => {
     await expect(FactorialPage.resultText).toHaveTextContaining(text);
 });
 
-Then(/^I see the following text relate to factorial of 0 "([^"]*)"$/, async(text) => {
+Then(/^I should see the following text relate to factorial of 0 "([^"]*)"$/, async(text) => {
     await expect(FactorialPage.resultText).toHaveTextContaining(text);
 });
 
-Then(/^No results are appearing on the screen and i don't see the text "([^"]*)"$/, async(text) => {
-    await expect(FactorialPage.resultText).not.toHaveTextContaining(text);
+Then(/^I should see on the screen an error "([^"]*)"$/, async(text) => {
+    await expect(FactorialPage.resultText).toHaveTextContaining(text);
+});
+
+
+//API
+Given(/^I have the API endpoint "([^"]*)"$/, function (endpoint) {
+    apiUrl = endpoint;
+});
+
+When(/^I make a GET request to the endpoint$/, async function () {
+    try {
+        response = await axios.get(apiUrl);
+    } catch (error) {
+        throw new Error(`Failed to make GET request to ${apiUrl}: ${error.message}`);
+    }
+});
+
+Then(/^the response should have a status code of 200 OK$/, function () {
+    expect(response.statusText).toEqual("OK")
+});
+
+Then(/^the response should contain the text "([^"]*)"$/, function (text) {
+    expect(response.data).toHaveTextContaining(text);
 });
