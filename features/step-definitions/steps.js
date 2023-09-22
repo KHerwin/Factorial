@@ -57,6 +57,14 @@ When(/^I make a GET request to the endpoint with the query parameter "number" se
     }
 });
 
+When('I make a POST request to the endpoint with the request body:', async function (requestBody) {
+    try {
+        response = await axios.post(apiUrl, JSON.parse(requestBody));
+    } catch (error) {
+        throw new Error(`Failed to make POST request to ${apiUrl}: ${error.message}`);
+    }
+});
+
 Then(/^the response should have a status code of 200 OK$/, function () {
     expect(response.statusText).toEqual("OK")
 });
