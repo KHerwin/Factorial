@@ -8,6 +8,8 @@ npm init -y
 
 npm init wdio .
 
+npm install axios
+
 Run the test
 npx wdio 
 
